@@ -1,8 +1,12 @@
+import { useContext, useEffect } from "react";
 import "./App.css";
 import CreateFields from "./components/Create/createFields";
 import PreviewForm from "./components/Preview";
+import { FieldContext } from "./context/formFields";
 
 function App() {
+  const { formFields, formData } = useContext(FieldContext);
+
   return (
     <>
       <div className="flex justify-center items-start  gap-5 ">
@@ -14,8 +18,7 @@ function App() {
             <CreateFields />
           </div>
         </div>
-
-        <PreviewForm />
+        {formFields?.length > 0 && <PreviewForm />}
       </div>
     </>
   );

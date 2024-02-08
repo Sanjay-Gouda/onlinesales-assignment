@@ -6,10 +6,12 @@ export const FieldContext = createContext();
 
 const FormContext = ({ children }) => {
   const [formFields, setNewFormField] = useState([]);
-
+  const [formData, setFormData] = useState({});
   return (
     <>
-      <FieldContext.Provider value={{ formFields, setNewFormField }}>
+      <FieldContext.Provider
+        value={{ formFields, setNewFormField, formData, setFormData }}
+      >
         {children}
       </FieldContext.Provider>
     </>

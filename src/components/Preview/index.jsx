@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from "../Shared/Button";
 import Checkbox from "../Shared/Checkbox";
 import Dropdown from "../Shared/Dropdown";
@@ -7,11 +7,12 @@ import { FieldContext } from "../../context/formFields";
 import Radio from "../Shared/Radio";
 
 const PreviewForm = () => {
-  const { formFields, setNewFormField } = useContext(FieldContext);
+  const { formFields, setNewFormField, formData, setFormData } =
+    useContext(FieldContext);
 
   console.log(formFields, "Fieds");
 
-  const [inputValue, setInputValues] = useState({});
+  const [formValue, setformValues] = useState({});
   const [checkedItems, setCheckedItem] = useState([]);
 
   const handleCheckbox = (e) => {
@@ -38,15 +39,19 @@ const PreviewForm = () => {
   const handleInputChange = (e) => {
     const { value, name } = e.target;
 
-    setInputValues({
-      ...inputValue,
+    setformValues({
+      ...formValue,
       [name]: value,
     });
   };
 
   const handleSubmit = () => {
-    console.log(inputValue, { interests: checkedItems });
-    console.log(formFields);
+    setformValues({
+      ...formValue,
+      interests: checkedItems,
+    });
+
+    setFormData({ ...formData, formValue });
   };
 
   return (
@@ -100,7 +105,11 @@ const PreviewForm = () => {
               ) : null;
             })}
 
-            <Button label="Submit" onClick={handleSubmit} />
+            <Button
+              label="Submit"
+              onClick={handleSubmit}
+              isDisabled={formFields.length < 1}
+            />
           </div>
         </div>
       </div>
