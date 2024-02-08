@@ -11,7 +11,7 @@ Create a dynamic form generator application using React.js. The application shou
 ## Features
 
 - **Add Dynamic Fields:** Users can add dynamic fields such as text inputs, dropdowns, checkboxes, and radio buttons.
-- **Remove Fieds :** User Can easily remove added fieds from the Preview form section.
+- **Remove Fields :** User Can easily remove added fieds from the Preview form section.
 
 - **Add Dynamic Options in Dropdown Menu :** Add multiple options in a Dropdown Menu from  generate form section.
  
