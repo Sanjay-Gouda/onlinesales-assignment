@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import Button from "../Shared/Button";
 import Checkbox from "../Shared/Checkbox";
 import Dropdown from "../Shared/Dropdown";
@@ -52,6 +52,8 @@ const PreviewForm = () => {
     });
 
     setFormData({ ...formData, formValue });
+
+    alert("Data Saved Successfully.");
   };
 
   return (
