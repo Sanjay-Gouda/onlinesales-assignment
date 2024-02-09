@@ -8,6 +8,7 @@ const Dropdown = ({
   onChange,
   isShowDelete,
   handleDelete,
+  value,
 }) => {
   console.log(options);
   return (
@@ -26,7 +27,7 @@ const Dropdown = ({
             name={name}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-base cursor-pointer rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
           >
-            <option selected>Choose Field </option>
+            <option selected={value === "text"}>Choose Field </option>
             {options?.map((opt, ind) => (
               <option value={opt} key={ind}>
                 {opt}

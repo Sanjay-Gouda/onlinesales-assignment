@@ -1,16 +1,17 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from "../Shared/Button";
 import Checkbox from "../Shared/Checkbox";
 import Dropdown from "../Shared/Dropdown";
 import InputField from "../Shared/InputField";
 import { FieldContext } from "../../context/formFields";
 import Radio from "../Shared/Radio";
+import { useRandomID } from "../../hooks/useRandomId";
 
 const PreviewForm = () => {
   const { formFields, setNewFormField, formData, setFormData } =
     useContext(FieldContext);
 
-  console.log(formFields, "Fieds");
+  const id = useRandomID();
 
   const [formValue, setformValues] = useState({});
   const [checkedItems, setCheckedItem] = useState([]);
@@ -46,15 +47,19 @@ const PreviewForm = () => {
   };
 
   const handleSubmit = () => {
-    setformValues({
-      ...formValue,
-      interests: checkedItems,
-    });
+    // if (Object.keys(formValue).length === 0) {
+    //   alert("please fill all the fields");
+    // } else {
+    // }
+    setFormData([...formData, { ...formValue, id, interests: checkedItems }]);
 
-    setFormData({ ...formData, formValue });
-
-    alert("Data Saved Successfully.");
+    // setformValues({});
+    // alert("Data Saved Successfully.");
   };
+
+  useEffect(() => {
+    console.log(formData, "after Submit");
+  }, [formData]);
 
   return (
     <>
@@ -64,7 +69,7 @@ const PreviewForm = () => {
             Preview Form
           </h1>
           <div className="space-y-4 md:space-y-6">
-            {formFields.map((item) => {
+            {formFields.map((item, ind) => {
               return item.type === "InputField" ? (
                 <div>
                   <InputField

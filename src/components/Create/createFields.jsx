@@ -17,8 +17,14 @@ const CreateFields = () => {
 
   const { setNewFormField, formFields } = useContext(FieldContext);
   const id = useRandomID();
+
   const handleAdd = () => {
-    setNewFormField([...formFields, { id, ...currentField }]);
+    if (currentField.type === "text") {
+      alert("please select field");
+    } else {
+      setNewFormField([...formFields, { id, ...currentField }]);
+      setCurrentField({ ...currentField, type: "text", label: "" });
+    }
   };
 
   useEffect(() => {
@@ -40,11 +46,14 @@ const CreateFields = () => {
           label="Select Field"
           options={options}
           name="type"
+          value={currentField.type}
+          // isSelected={currentField.type === "text"}
           onChange={handleChange}
         />
         <InputField
           label="Label for Field"
           name="label"
+          value={currentField.label}
           onChange={handleChange}
         />
 

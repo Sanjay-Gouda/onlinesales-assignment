@@ -6,7 +6,7 @@ export const FieldContext = createContext();
 
 const FormContext = ({ children }) => {
   const [formFields, setNewFormField] = useState([]);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState([]);
   return (
     <>
       <FieldContext.Provider
